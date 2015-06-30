@@ -16,8 +16,7 @@ def run():
 			plc11.setInput(i, int(s[i]))
 		print "Inputs: "+str.__getslice__(s,0,InputPins)
 		s = ""
-
-		# PROGRAM //////////////////////////////////////////////////////////////////////
+		
         ########### Blinked led example ###################
         #
         # In this example, the blinked led is in output[0] = pin 2 in arduino (0 and 1 are tx and rx)
