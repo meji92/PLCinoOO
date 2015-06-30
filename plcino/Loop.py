@@ -9,7 +9,7 @@ plc11 = plc(InputPins,OutputPins,500,500,500,"ttyACM1");
 def run():
 	global InputPins
 	global OutputPins
-	time.sleep(2) # 2 seconds because arduino uno is a little bit slow
+	time.sleep(2) # 2 seconds because arduino uno is a little bit slow starting the connection
 	while True:
 		s = plc11.get()
 		for i in range(0,InputPins):
