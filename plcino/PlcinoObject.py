@@ -99,10 +99,10 @@ class plc:
     #Set the inputs like the given in newInputs with this structure: ;0,1;2,0;3,1; where ;Number of input, value; Number of input, value; ......
     def setInputs(self,newInputs):
         while (newInputs.__len__()>1):
-            aux = newInputs[newInputs.find(';')+1:newInputs.find(',')]
-            newInputs = newInputs [newInputs.find(','):newInputs.__len__()]
-            aux2 = newInputs[newInputs.find(',')+1:newInputs.find(';')]
-            newInputs = newInputs [newInputs.find(';'):newInputs.__len__()]
+            aux = newInputs[0:newInputs.find(';')]
+            newInputs = newInputs [newInputs.find(';')+1:newInputs.__len__()]
+            aux2 = newInputs[0:newInputs.find(';')]
+            newInputs = newInputs [newInputs.find(';')+1:newInputs.__len__()]
             self.inputs[int(aux)]=int(aux2)
 
     ############################# CONTACTS ###################################
@@ -110,25 +110,25 @@ class plc:
     def contact(self, input, var, imtcq):
         if (imtcq == "i")|(imtcq == "I"):
             if (self.inputs[var] == 1):
-                return self.inputs[var]
+                return input
             else:
                 return 0
 
         if (imtcq == "m")|(imtcq == "M"):
             if (self.marks[var] == 1):
-                return self.marks[var]
+                return input
             else:
                 return 0
 
         if (imtcq == "t")|(imtcq == "T"):
             if (self.timers[var] == 1):
-                return self.timers[var]
+                return input
             else:
                 return 0
 
         if (imtcq == "c")|(imtcq == "C"):
             if self.counts[var] == 1:
-                return self.counts[var]
+                return input
             else:
                 return 0
 
@@ -141,31 +141,31 @@ class plc:
     def contactNot(self, input, var, imtcq):
         if (imtcq == "i")|(imtcq == "I"):
             if (self.inputs[var] == 0):
-                return self.inputs[var]
+                return input
             else:
                 return 0
 
         if (imtcq == "m")|(imtcq == "M"):
             if (self.marks[var] == 0):
-                return self.marks[var]
+                return input
             else:
                 return 0
 
         if (imtcq == "t")|(imtcq == "T"):
             if (self.timers[var] == 0):
-                return self.timers[var]
+                return input
             else:
                 return 0
 
         if (imtcq == "c")|(imtcq == "C"):
             if (self.counts[var] == 0):
-                return self.counts[var]
+                return input
             else:
                 return 0
 
         if (imtcq == "q")|(imtcq == "Q"):
             if self.counts[var] == 0:
-                return self.outputs[var]
+                return input
             else:
                 return 0
 
