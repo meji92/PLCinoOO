@@ -1,4 +1,4 @@
-PLCino Object is the object oriented version of plcino. With this version you can run multiple PLCinos
+PLCinoOO is the object oriented version of plcino. With this version you can run multiple PLCinos
 
 PLCino simulate a simple PLC with an arduino driving digital (analog not yet) inputs and outputs 
 
