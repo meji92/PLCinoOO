@@ -41,6 +41,7 @@ class plc:
         self.InputPins = nInputs
         self.OutputPins = nOutputs
         self.ser = serial.Serial('/dev/'+serialnumber, 9600)
+        #self.ser = serial.Serial(serialnumber, 9600)
 
         for i in range(0,nInputs):
             self.inputs.append(0)
@@ -93,6 +94,24 @@ class plc:
     def getOutput(self,index):
         return self.outputs[index]
 
+    def getMarks(self):
+        s = ""
+        for item in self.marks:
+            s = s+ str(item)
+        return s
+
+    def getTimers(self):
+        s = ""
+        for item in self.timers:
+            s = s+ str(item)
+        return s
+
+    def getCounters(self):
+        s = ""
+        for item in self.counts:
+            s = s+ str(item)
+        return s
+
     def setInput(self, index, value):
         self.inputs[index]= value
 
@@ -103,7 +122,8 @@ class plc:
             newInputs = newInputs [newInputs.find(';')+1:newInputs.__len__()]
             aux2 = newInputs[0:newInputs.find(';')]
             newInputs = newInputs [newInputs.find(';')+1:newInputs.__len__()]
-            self.inputs[int(aux)]=int(aux2)
+            if (int(aux)<=self.inputs.__len__()):
+                self.inputs[int(aux)]=int(aux2)
 
     ############################# CONTACTS ###################################
     # Contact. imtcq sets the tipe of var value: i(input), m(mark), t(timer), c(counter), q(input)
@@ -348,3 +368,4 @@ class plc:
     def set(self, pinstring):
         # INPUT EXAMPLE >> "1000000000000000000" >> "1" + 18 pins
         self.ser.write(pinstring)
+
